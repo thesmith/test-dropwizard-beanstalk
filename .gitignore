@@ -4,3 +4,9 @@
 target
 tmp-git-deployment-staging
 *.iml
+.idea
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

@@ -16,7 +16,7 @@
 
         <beanstalker.region>eu-west-1</beanstalker.region>
 
-        <environmentName>${project.artifactId}-prod</environmentName>
+        <environmentName>test-dw-eb-prod</environmentName>
 
         <beanstalk.applicationName>${project.artifactId}</beanstalk.applicationName>
 
@@ -25,11 +25,11 @@
         <beanstalk.environmentRef>${environmentName}.elasticbeanstalk.com</beanstalk.environmentRef>
 
         <beanstalk.useStagingDirectory>true</beanstalk.useStagingDirectory>
-        <beanstalk.solutionStack>64bit Amazon Linux 2014.* running Docker 1.*</beanstalk.solutionStack>
+        <beanstalk.solutionStack>*Multi*Docker*</beanstalk.solutionStack>
         <beanstalk.applicationHealthCheckURL>/health/check</beanstalk.applicationHealthCheckURL>
         <beanstalk.environmentType>SingleInstance</beanstalk.environmentType>
 
-        <beanstalk.instanceType>t2.micro</beanstalk.instanceType>
+        <beanstalk.instanceType>m1.small</beanstalk.instanceType>
 
         <!--
         <beanstalk.keyName>your-ec2-key</beanstalk.keyName>
@@ -41,21 +41,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.4.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.4.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.4.1.1</version>
-        </dependency>
-        <dependency>
             <groupId>br.com.ingenieux.cloudy</groupId>
             <artifactId>cloudy-awseb</artifactId>
             <version>0.0.5</version>
@@ -66,6 +51,21 @@
             <version>0.8.1</version>
         </dependency>
     </dependencies>
+
+    <scm>
+        <connection>scm:git:git://github.com/thesmith/test-dropwizard-beanstalk.git</connection>
+        <developerConnection>scm:git:git@github.com:thesmith/test-dropwizard-beanstalk.git</developerConnection>
+        <url>http://github.com/thesmith/test-dropwizard-beanstalk/</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.build.directory}/mvn-repo</url>
+        </repository>
+    </distributionManagement>
 
     <build>
         <finalName>${project.artifactId}</finalName>
@@ -116,7 +116,7 @@
                 <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
                 <beanstalk.versionLabel>${maven.build.timestamp}</beanstalk.versionLabel>
                 <beanstalk.s3Key>apps/${project.artifactId}/$\{project.build.finalName}-$\{beanstalk.versionLabel}.zip</beanstalk.s3Key>
-                <beanstalk.artifactFile>/home/beanstalker/work/beanstalker/target/checkout/elasticbeanstalk-docker-dropwizard-webapp-archetype/target/elasticbeanstalk-docker-dropwizard-webapp-archetype-1.4.0-bin.zip</beanstalk.artifactFile>
+                <beanstalk.artifactFile>${project.build.directory}/${project.build.finalName}-bin.zip</beanstalk.artifactFile>
             </properties>
             <build>
                 <defaultGoal>deploy</defaultGoal>

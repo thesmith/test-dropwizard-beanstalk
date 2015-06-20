@@ -25,11 +25,11 @@
         <beanstalk.environmentRef>${environmentName}.elasticbeanstalk.com</beanstalk.environmentRef>
 
         <beanstalk.useStagingDirectory>true</beanstalk.useStagingDirectory>
-        <beanstalk.solutionStack>*Multi*Docker*</beanstalk.solutionStack>
+        <beanstalk.solutionStack>64bit Amazon Linux 2015.03 v1.4.3 running Docker 1.6.2</beanstalk.solutionStack>
         <beanstalk.applicationHealthCheckURL>/health/check</beanstalk.applicationHealthCheckURL>
         <beanstalk.environmentType>SingleInstance</beanstalk.environmentType>
 
-        <beanstalk.instanceType>m1.small</beanstalk.instanceType>
+        <beanstalk.instanceType>t1.micro</beanstalk.instanceType>
 
         <!--
         <beanstalk.keyName>your-ec2-key</beanstalk.keyName>
@@ -115,7 +115,7 @@
                 <maven.deploy.skip>true</maven.deploy.skip>
                 <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
                 <beanstalk.versionLabel>${maven.build.timestamp}</beanstalk.versionLabel>
-                <beanstalk.s3Key>apps/${project.artifactId}/$\{project.build.finalName}-$\{beanstalk.versionLabel}.zip</beanstalk.s3Key>
+                <beanstalk.s3Key>apps/${project.artifactId}/${project.build.finalName}-${beanstalk.versionLabel}.zip</beanstalk.s3Key>
                 <beanstalk.artifactFile>${project.build.directory}/${project.build.finalName}-bin.zip</beanstalk.artifactFile>
             </properties>
             <build>

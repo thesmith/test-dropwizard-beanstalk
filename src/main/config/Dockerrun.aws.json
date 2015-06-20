@@ -1,5 +1,5 @@
 {
-  "AWSEBDockerrunVersion": "2",
+  "AWSEBDockerrunVersion": "1",
   "Logging": "/app/log",
   "Volumes": [
     {
@@ -7,28 +7,9 @@
       "ContainerDirectory": "/tmp"
     }
   ],
-  "containerDefinitions": [
+  "Ports": [
     {
-      "name": "dropwizard",
-      "image": "twdevops/java/8",
-      "essential": true,
-      "memory": 128,
-      "mountPoints": [
-        {
-          "sourceVolume": "awseb-logs-dropwizard",
-          "containerPath": "/app/log"
-        }
-      ]
-    }
-  ],
-  "portMappings": [
-    {
-      "hostPort": 8080,
-      "containerPort": 8080
-    },
-    {
-      "hostPort": 8081,
-      "containerPort": 8081
+      "ContainerPort": 8080
     }
   ]
 }

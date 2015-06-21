@@ -3,7 +3,6 @@ package uk.co.thesmith.resources;
 import javax.ws.rs.*;
 
 @Path("/health")
-@Produces("application/json; charset=utf-8")
 public class HealthCheckResource extends BaseResource {
   @GET
   @Path("/check")
